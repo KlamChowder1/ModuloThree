@@ -2,18 +2,16 @@ function modThree(input) {
   let currState = 0;
 
   for (let i = 0; i < input.length; i++) {
-    if (input[i] === '0' && currState === 0) {
-      currState = 0;
-    } else if (input[i] === '1' && currState === 0) {
-      currState = 1;
-    } else if (input[i] === '0' && currState === 1) {
-      currState = 2;
-    } else if (input[i] === '1' && currState === 1) {
-      currState = 0;
-    } else if (input[i] === '0' && currState === 2) {
-      currState = 1;
-    } else if (input[i] === '1' && currState === 2) {
-      currState = 2;
+    switch (currState) {
+      case 0:
+        if (input[i] === '0' ? (currState = 0) : (currState = 1));
+        break;
+      case 1:
+        if (input[i] === '0' ? (currState = 2) : (currState = 0));
+        break;
+      case 2:
+        if (input[i] === '0' ? (currState = 1) : (currState = 2));
+        break;
     }
   }
   return currState;
