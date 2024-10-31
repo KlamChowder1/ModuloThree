@@ -67,3 +67,5 @@ modThreeFSM.setInitialState(0);
 modThreeFSM.processInput('1010');
 
 console.log(modThreeFSM.getCurrentState());
+
+module.exports = FSM;
