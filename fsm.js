@@ -30,6 +30,8 @@ class FSM {
   //     }
   // }
   addTransition(initialState, input, finalState) {
+    if (!this.states[initialState] || !this.states[finalState])
+      throw new Error('State does not exist');
     this.states[initialState][input] = finalState;
   }
 
