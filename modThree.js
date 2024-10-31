@@ -17,5 +17,5 @@ function modThree(input) {
   return currState;
 }
 
-const result = modThree('110');
+const result = modThree('1010');
 console.log(result);
