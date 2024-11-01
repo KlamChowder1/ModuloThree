@@ -1,12 +1,22 @@
 Setup
 
-- run `tsc fsm.ts` in the root folder to compile into the `.ts` file into `.js`
-- a `tsconfig.json` file could be added in the future, but I wanted to keep it simple
+- you can run the `fsm.js` file with `node fsm.js`
+
+- Example usage:
+
+```
+ let modThreeFSM;
+ modThreeFSM = new FSM();
+ modThreeFSM.addState(0);
+ modThreeFSM.addTransition(0, '0', 0);
+ modThreeFSM.setInitialState(0);
+ modThreeFSM.processInput('0')
+```
 
 Testing
 
 - run `npm run test` in the root folder to run the tests in `fsm.test.js`
-- I have added tests for another FSM for an additional check that the fsm class is extendable
+- I have added tests for another FSM (turnstile FSM) for an additional check that the fsm class is extendable
 
 Assumptions
 
