@@ -19,48 +19,36 @@ describe('FSM Tests', () => {
 
       modThreeFSM.setInitialState(0);
     });
+
+    const modThreeCases = [
+      { initialState: 0, input: '0', expected: 0 },
+      { initialState: 0, input: '1', expected: 1 },
+      { initialState: 1, input: '0', expected: 2 },
+      { initialState: 1, input: '1', expected: 0 },
+      { initialState: 2, input: '0', expected: 1 },
+      { initialState: 2, input: '1', expected: 2 },
+    ];
+
+    modThreeCases.forEach(({ initialState, input, expected }) => {
+      test(`should end in ${expected} for input ${input} with initial state ${initialState}`, () => {
+        modThreeFSM.setInitialState(initialState);
+        modThreeFSM.processInput(input);
+        expect(modThreeFSM.getCurrentState()).toBe(expected);
+      });
+    });
+
     test('should start in initial state', () => {
       expect(modThreeFSM.getCurrentState()).toBe(0);
     });
+
     test('should end in initial state if input sequence is empty', () => {
       modThreeFSM.processInput('');
       expect(modThreeFSM.getCurrentState()).toBe(0);
     });
-    // 0
-    test('should end in 0 for input sequence 0', () => {
-      modThreeFSM.setInitialState(0);
-      modThreeFSM.processInput('0');
+
+    test('should end in 0 for input sequence 110', () => {
+      modThreeFSM.processInput('110');
       expect(modThreeFSM.getCurrentState()).toBe(0);
-    });
-    test('should end in 1 for input sequence 1', () => {
-      modThreeFSM.setInitialState(0);
-      modThreeFSM.processInput('1');
-      expect(modThreeFSM.getCurrentState()).toBe(1);
-    });
-
-    // 1
-    test('should end in 2 for input sequence 0', () => {
-      modThreeFSM.setInitialState(1);
-      modThreeFSM.processInput('0');
-      expect(modThreeFSM.getCurrentState()).toBe(2);
-    });
-    test('should end in 0 for input sequence 1', () => {
-      modThreeFSM.setInitialState(1);
-      modThreeFSM.processInput('1');
-      expect(modThreeFSM.getCurrentState()).toBe(0);
-    });
-
-    // 2
-    test('should end in 1 for input sequence 0', () => {
-      modThreeFSM.setInitialState(2);
-      modThreeFSM.processInput('0');
-      expect(modThreeFSM.getCurrentState()).toBe(1);
-    });
-
-    test('should end in 2 for input sequence 1', () => {
-      modThreeFSM.setInitialState(2);
-      modThreeFSM.processInput('1');
-      expect(modThreeFSM.getCurrentState()).toBe(2);
     });
 
     test('should end in 1 for input sequence 1010', () => {
@@ -81,11 +69,11 @@ describe('FSM Tests', () => {
     });
   });
 
+  // example turnstile FSM taken from https://en.wikipedia.org/wiki/Finite-state_machine#/media/File:Turnstile_state_machine_colored.svg
   describe('Turnstile FSM', () => {
     let turnstile;
 
     beforeEach(() => {
-      // example FSM taken from https://en.wikipedia.org/wiki/Finite-state_machine#/media/File:Turnstile_state_machine_colored.svg
       turnstile = new FSM();
 
       turnstile.addState('locked');
@@ -97,6 +85,21 @@ describe('FSM Tests', () => {
       turnstile.addTransition('unlocked', 'coin', 'unlocked');
 
       turnstile.setInitialState('locked');
+    });
+
+    const turnstileCases = [
+      { initialState: 'locked', input: ['push'], expected: 'locked' },
+      { initialState: 'locked', input: ['coin'], expected: 'unlocked' },
+      { initialState: 'unlocked', input: ['push'], expected: 'locked' },
+      { initialState: 'unlocked', input: ['coin'], expected: 'unlocked' },
+    ];
+
+    turnstileCases.forEach(({ initialState, input, expected }) => {
+      test(`should end in ${expected} for input ${input} with initial state ${initialState}`, () => {
+        turnstile.setInitialState(initialState);
+        turnstile.processInput(input);
+        expect(turnstile.getCurrentState()).toBe(expected);
+      });
     });
 
     test('should start in initial state', () => {
