@@ -3,6 +3,22 @@ class FSM {
   private currentState: string;
 
   /**
+   * Setter for the initial state of the FSM
+   * @param {string} state - the starting state for the FSM
+   */
+  setInitialState(state: string): void {
+    this.currentState = state;
+  }
+
+  /**
+   * Getter for the current state of the FSM
+   * @returns {string} - the current state
+   */
+  getCurrentState(): string {
+    return this.currentState;
+  }
+
+  /**
    * Adds a state to the FSM
    * @param {string} stateName - the state that is part of the FSM
    */
@@ -25,14 +41,6 @@ class FSM {
   }
 
   /**
-   * Sets the initial state of the FSM
-   * @param {string} state - the starting state for the FSM
-   */
-  setInitialState(state: string): void {
-    this.currentState = state;
-  }
-
-  /**
    * Processes the input for the FSM and updates the state
    * @param {string | string []} inputSequence - a string of input characters used for transitioning
    */
@@ -41,14 +49,6 @@ class FSM {
       const transitionMap = this.states[this.currentState];
       this.currentState = transitionMap[input];
     }
-  }
-
-  /**
-   * Returns the current state of the FSM
-   * @returns {string} - the current state
-   */
-  getCurrentState(): string {
-    return this.currentState;
   }
 }
 
