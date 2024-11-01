@@ -3,6 +3,20 @@ var FSM = /** @class */ (function () {
         this.states = {};
     }
     /**
+     * Setter for the initial state of the FSM
+     * @param {string} state - the starting state for the FSM
+     */
+    FSM.prototype.setInitialState = function (state) {
+        this.currentState = state;
+    };
+    /**
+     * Getter for the current state of the FSM
+     * @returns {string} - the current state
+     */
+    FSM.prototype.getCurrentState = function () {
+        return this.currentState;
+    };
+    /**
      * Adds a state to the FSM
      * @param {string} stateName - the state that is part of the FSM
      */
@@ -23,13 +37,6 @@ var FSM = /** @class */ (function () {
         this.states[initialState][input] = finalState;
     };
     /**
-     * Sets the initial state of the FSM
-     * @param {string} state - the starting state for the FSM
-     */
-    FSM.prototype.setInitialState = function (state) {
-        this.currentState = state;
-    };
-    /**
      * Processes the input for the FSM and updates the state
      * @param {string | string []} inputSequence - a string of input characters used for transitioning
      */
@@ -40,28 +47,6 @@ var FSM = /** @class */ (function () {
             this.currentState = transitionMap[input];
         }
     };
-    /**
-     * Returns the current state of the FSM
-     * @returns {string} - the current state
-     */
-    FSM.prototype.getCurrentState = function () {
-        return this.currentState;
-    };
     return FSM;
 }());
-var modThreeFSM;
-modThreeFSM = new FSM();
-modThreeFSM.addState(0);
-modThreeFSM.addState(1);
-modThreeFSM.addState(2);
-modThreeFSM.addTransition(0, '0', 0);
-modThreeFSM.addTransition(0, '1', 1);
-modThreeFSM.addTransition(1, '0', 2);
-modThreeFSM.addTransition(1, '1', 0);
-modThreeFSM.addTransition(2, '0', 1);
-modThreeFSM.addTransition(2, '1', 2);
-modThreeFSM.setInitialState(0);
-modThreeFSM.processInput('110');
-var test = modThreeFSM.getCurrentState();
-console.log(test);
 module.exports = FSM;
