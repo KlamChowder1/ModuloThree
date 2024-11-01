@@ -6,3 +6,4 @@ Assumptions
 4. Assume states are only strings
 5. Assume transitions are strings or an array of strings
 6. Assume the input sequence is not null
+7. Assume current state is never null (always begins at a valid state)
