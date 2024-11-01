@@ -52,25 +52,4 @@ class FSM {
   }
 }
 
-let modThreeFSM;
-modThreeFSM = new FSM();
-modThreeFSM.addState(0);
-modThreeFSM.addState(1);
-modThreeFSM.addState(2);
-
-modThreeFSM.addTransition(0, '0', 0);
-modThreeFSM.addTransition(0, '1', 1);
-modThreeFSM.addTransition(1, '0', 2);
-modThreeFSM.addTransition(1, '1', 0);
-modThreeFSM.addTransition(2, '0', 1);
-modThreeFSM.addTransition(2, '1', 2);
-
-modThreeFSM.setInitialState(0);
-
-modThreeFSM.processInput('110');
-
-const test = modThreeFSM.getCurrentState();
-
-console.log(test);
-
 module.exports = FSM;
