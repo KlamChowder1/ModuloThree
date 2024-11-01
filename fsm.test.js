@@ -37,6 +37,12 @@ describe('FSM Tests', () => {
       });
     });
 
+    test('should throw an error for an input character with no transition map', () => {
+      expect(() => modThreeFSM.processInput('x')).toThrow(
+        'No transition method defined'
+      );
+    });
+
     test('should start in initial state', () => {
       expect(modThreeFSM.getCurrentState()).toBe(0);
     });
@@ -65,6 +71,12 @@ describe('FSM Tests', () => {
     test('should throw an error if adding in a final transition state that has not been added to the FSM states', () => {
       expect(() => modThreeFSM.addTransition(1, '0', 3)).toThrow(
         'State does not exist'
+      );
+    });
+
+    test('should throw an error for an input character with no transition map', () => {
+      expect(() => modThreeFSM.processInput('2')).toThrow(
+        'No transition method defined'
       );
     });
   });
