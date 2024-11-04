@@ -1,6 +1,7 @@
 Setup
 
-- you can run the `fsm.js` file with `node fsm.js`
+- run `npm install`
+- you can run the `fsm.js` file with `node fsm.js` from the root folder
 
 - Example usage:
 
@@ -11,6 +12,8 @@ Setup
  modThreeFSM.addTransition(0, '0', 0);
  modThreeFSM.setInitialState(0);
  modThreeFSM.processInput('0')
+
+ expected return is 0
 ```
 
 Testing
