@@ -150,8 +150,8 @@ describe('FSM Tests', () => {
     });
 
     test('should throw an error for an input character with no transition map', () => {
-      expect(() =>
-        turnstile.processInput(['push']).toThrow('No transition method defined')
+      expect(() => turnstile.processInput(['pull'])).toThrow(
+        'No transition method defined'
       );
     });
   });
