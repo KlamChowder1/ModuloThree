@@ -20,11 +20,12 @@ Testing
 
 Assumptions
 
-1. Assume all input sequences are valid for the FSM created (the transition state exists in the FSM state mapping)
-2. Assume the input sequence is not greater than 100 characters / input elements
-3. Assume transitions only have one initial state, one input, and one final state
-4. Assume states are strings or numbers
-5. Assume transitions are strings or an array of strings
+1. Assume all input sequences are valid for the FSM created (the transition state exists in the FSM state mapping) - will throw an Error here, but just to state my assumption as well
+2. Assume the input sequence is not greater than 10 characters / 10 elements in an array
+3. Assume transitions only have one initial state, one input, and one final state (from the definition of an FSM)
+4. Assume states are strings or numbers - future implementations would add a check for this
+5. Assume transitions are strings or an array of strings - future implementations would add a check for this
 6. Assume the input sequence matches the FSM being used (string for ModThree, array of strings for turnstile FSM) - future implementations would add a check for this / validate the input for the FSM
 7. Assume the input sequence is not null
 8. Assume current state is never null (always begins at a valid state)
+9. Assume any language is okay to use, I chose JavaScript for simplicity but TypeScript would be more strongly typed (technically the methods in the fsm class accept any input other than string / number, and TypeScript would have helped with type checking)

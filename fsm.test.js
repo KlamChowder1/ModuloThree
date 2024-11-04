@@ -37,18 +37,17 @@ describe('FSM Tests', () => {
       });
     });
 
-    test('should throw an error for an input character with no transition map', () => {
-      expect(() => modThreeFSM.processInput('x')).toThrow(
-        'No transition method defined'
-      );
-    });
-
     test('should start in initial state', () => {
       expect(modThreeFSM.getCurrentState()).toBe(0);
     });
 
-    test('should end in initial state if input sequence is empty', () => {
+    test('should end in initial state if input sequence is an empty string', () => {
       modThreeFSM.processInput('');
+      expect(modThreeFSM.getCurrentState()).toBe(0);
+    });
+
+    test('should end in initial state if input sequence is an empty array', () => {
+      modThreeFSM.processInput([]);
       expect(modThreeFSM.getCurrentState()).toBe(0);
     });
 
@@ -118,8 +117,13 @@ describe('FSM Tests', () => {
       expect(turnstile.getCurrentState()).toBe('locked');
     });
 
-    test('should end in initial state if input sequence is empty', () => {
+    test('should end in initial state if input sequence is an empty string', () => {
       turnstile.processInput('');
+      expect(turnstile.getCurrentState()).toBe('locked');
+    });
+
+    test('should end in initial state if input sequence is an empty array', () => {
+      turnstile.processInput([]);
       expect(turnstile.getCurrentState()).toBe('locked');
     });
 
@@ -131,6 +135,24 @@ describe('FSM Tests', () => {
     test('should end in `locked` for input sequence [`coin`, `coin`, `push`]', () => {
       turnstile.processInput(['coin', 'coin', 'push']);
       expect(turnstile.getCurrentState()).toBe('locked');
+    });
+
+    test('should throw an error if adding an inital transition state that has not been added to the FSM states', () => {
+      expect(() => turnstile.addTransition('closed', 'coin', 'locked')).toThrow(
+        'State does not exist'
+      );
+    });
+
+    test('should throw an error if adding in a final transition state that has not been added to the FSM states', () => {
+      expect(() => turnstile.addTransition('unlocked', 'coin', 'open')).toThrow(
+        'State does not exist'
+      );
+    });
+
+    test('should throw an error for an input character with no transition map', () => {
+      expect(() =>
+        turnstile.processInput(['push']).toThrow('No transition method defined')
+      );
     });
   });
 });

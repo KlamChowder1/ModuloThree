@@ -3,6 +3,7 @@ class FSM {
     this.states = {};
     this.currentState = null;
   }
+
   /**
    * Setter for the initial state of the FSM
    * @param {string | number} state - the starting state for the FSM
