@@ -1,4 +1,4 @@
-Setup
+# Setup
 
 - run `npm install`
 - you can run the `fsm.js` file with `node fsm.js` from the root folder
@@ -16,12 +16,12 @@ Setup
  expected return is 0
 ```
 
-Testing
+# Testing
 
 - run `npm run test` in the root folder to run the tests in `fsm.test.js`
 - I have added tests for another FSM (turnstile FSM) for an additional check that the fsm class is extendable
 
-Assumptions
+# Assumptions
 
 1. Assume all input sequences are valid for the FSM created (the transition state exists in the FSM state mapping) - will throw an Error here, but just to state my assumption as well
 2. Assume the input sequence is not greater than 10 characters / 10 elements in an array
