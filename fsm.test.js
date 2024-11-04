@@ -61,6 +61,16 @@ describe('FSM Tests', () => {
       expect(modThreeFSM.getCurrentState()).toBe(1);
     });
 
+    test('should end in 2 for input sequence 10', () => {
+      modThreeFSM.processInput('10');
+      expect(modThreeFSM.getCurrentState()).toBe(2);
+    });
+
+    test('should correctly process strings of 10 characters', () => {
+      modThreeFSM.processInput('1111100000');
+      expect(modThreeFSM.getCurrentState()).toBe(2);
+    });
+
     test('should throw an error if adding an inital transition state that has not been added to the FSM states', () => {
       expect(() => modThreeFSM.addTransition(3, '1', 0)).toThrow(
         'State does not exist'
@@ -127,13 +137,30 @@ describe('FSM Tests', () => {
       expect(turnstile.getCurrentState()).toBe('locked');
     });
 
-    test('should end in `unlocked` for input sequence [`coin`]', () => {
-      turnstile.processInput(['coin']);
+    test('should end in `unlocked` for input sequence [`push`, `coin`]', () => {
+      turnstile.processInput(['push', 'coin']);
       expect(turnstile.getCurrentState()).toBe('unlocked');
     });
 
     test('should end in `locked` for input sequence [`coin`, `coin`, `push`]', () => {
       turnstile.processInput(['coin', 'coin', 'push']);
+      expect(turnstile.getCurrentState()).toBe('locked');
+    });
+
+    test('should correctly process arrays of 10 strings', () => {
+      turnstile.processInput([
+        'coin',
+        'coin',
+        'coin',
+        'coin',
+        'coin',
+        'push',
+        'push',
+        'push',
+        'push',
+        'push',
+        'push',
+      ]);
       expect(turnstile.getCurrentState()).toBe('locked');
     });
 
